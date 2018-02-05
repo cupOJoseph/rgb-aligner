@@ -1,10 +1,10 @@
 A script to automate Image Alignment and Color Compositing
 
 ## Challenge
-Take a glass plate image as input and produce a single color image as output. 
+Take a glass plate image as input and produce a single color image as output.
 
 ## Process
-First step: Make the packages work.  I added 
+First step: Make the packages work.  I added
 
 ```python
 from matplotlib import pyplot as plt
@@ -41,9 +41,15 @@ Blue: up 10
 
 ![aligned lady](./output/manual-lady.jpg)
 
-Now that I am convinced this is actually possible it’s time to automate it a bit. 
+Now that I am convinced this is actually possible it’s time to automate it a bit.
 The basic idea for lining up the images automatically is to be very greedy.  We will slide the layers around, calculate the Sum of squared differences between each layer.  Hopefully, when they are aligned this number will be quite low, and we pick our best one.
 
+So here’s the meat of the algorithm. We let the image slide as much as 30 up or down. Then did some math.
 
+```python
+total_curr = np.sum( (temp_im1-image2) ** 2 )
+```
 
+This didn’t come out very well. My theory is that the border may be messing up my total.  The algorithm moved the red and the green layers up 25 pixels each.
 
+![auto lady 1](./output/automate-lady1.jpg)

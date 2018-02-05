@@ -73,7 +73,7 @@ def align(image1, image2):
     temp_im1 = image1
 
     #slide image 1 up -move_vert -> +move_vert
-    for move_vert in range(-10,10):
+    for move_vert in range(-30,30):
         temp_im1 = up(image1, move_vert)
 
         total_curr = np.sum( (temp_im1-image2) ** 2 )
@@ -83,9 +83,10 @@ def align(image1, image2):
             #new best alignment
             total_best = total_curr
             best_up = move_vert
-            print("new total")
+            #print("new total")
 
     # slide the amount
+    print("moving image up " + str(best_up))
     image1 = up(image1, best_up)
     # return the best slide of image 1
     return image1
