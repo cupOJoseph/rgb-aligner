@@ -14,11 +14,13 @@ from matplotlib import pyplot as plt
 
 So here is our default case of just splitting the image into 3 equal parts.
 ![original lady](./pics/lady.jpg)
-![funky lady](./output/lady1.jpg)
+![funky lady](./output/lady_default.jpg)
 
 Wow, maybe these really are colored photos. The blue is picked first so we will use that as the base layer so to speak.  It looks the green slide should get moved up a bit, and the red should get moved down some since I can see tree tops in the red section
 
+```python
 image[:, a] = np.roll(image[:, a], -1)
+```
 
 Should do the trick of shifting the image up a pixel in column ‘a’. To make this easier I made functions for up and down shifts. (slideUp(), and slideDown())
 
