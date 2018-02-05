@@ -38,7 +38,7 @@ def slideRight(image):
 
 #move image to the left
 def slideLeft(image):
-    
+
 
 
 #######################################
@@ -84,10 +84,10 @@ r = im[2*height: 3*height]
 # functions that might be useful for aligning the images include:
 # np.roll, np.sum, sk.transform.rescale (for multiscale)
 
-### ag = align(g, b)
-### ar = align(r, b)
+ag = align(g, b)
+ar = align(r, b)
 # create a color image
-im_out = np.dstack([r, g, b])
+im_out = np.dstack([ar, ag, b])
 
 # save the image
 fname = 'output/' + imname
