@@ -8,6 +8,7 @@ import numpy as np
 import skimage as sk
 import skimage.io as skio
 from matplotlib import pyplot as plt
+import sys
 
 #######################################
 #                                     #
@@ -32,6 +33,18 @@ def slideDown(image):
         image[:, a] = np.roll(temp[:, a], 1)
     return image
 
+def up(image, times):
+    if(times > 0):
+        for i in range(times):
+            image = slideUp(image)
+        return image
+    else:
+        for i in range(times):
+            image = slideDown(image)
+        return image
+
+
+'''
 #move image to the right 1
 def slideRight(image):
 
@@ -39,21 +52,43 @@ def slideRight(image):
 #move image to the left
 def slideLeft(image):
 
-
-
+'''
 #######################################
 #                                     #
 # aligning functions                  #
 #                                     #
 #######################################
+
+#align image1 to image2
 def align(image1, image2):
-    #count right slide:
-    #count up slide:
-    #track current
+    #count best right slide:
+    best_right = 0
+    #count best up slide:
+    best_up = 0
+    #track current total
+    total_curr = 0
+    #track best total
+    total_best = sys.maxsize
 
-    #slide image 1 up -8 -> 8
-        #slide image right
+    temp_im1 = image1
 
+    #slide image 1 up -move_vert -> +move_vert
+    for move_vert in range(-10,10):
+        temp_im1 = up(image1, move_vert)
+
+        total_curr = np.sum( (temp_im1-image2) ** 2 )
+        #print("total for move_vert" + str(move_vert) + ", is " + str(total_curr))
+
+        if (total_best > total_curr):
+            #new best alignment
+            total_best = total_curr
+            best_up = move_vert
+            print("new total")
+
+    # slide the amount
+    image1 = up(image1, best_up)
+    # return the best slide of image 1
+    return image1
 
 
 
