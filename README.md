@@ -12,8 +12,13 @@ from matplotlib import pyplot as plt
 ...because it worked better than scikit for me.  Also changed all the names of the files.  Next, I checked to see what the default case, of cutting the black and white image into thirds and dropping the pieces on each other would look like.
 
 So here is our default case of just splitting the image into 3 equal parts.
+
+
 ![original lady](./pics/lady.jpg)
+
+
 ![funky lady](./output/lady_default.jpg)
+
 
 Wow, maybe these really are colored photos. The blue is picked first so we will use that as the base layer so to speak.  It looks the green slide should get moved up a bit, and the red should get moved down some since I can see tree tops in the red section
 
@@ -33,6 +38,7 @@ After just a few iterations I was able to get a great image.  I think I was luck
 Green: up 2
 Red: down 7
 Blue: up 10
+
 ![aligned lady](./output/manual-lady.jpg)
 
 Now that I am convinced this is actually possible it’s time to automate it a bit. 
